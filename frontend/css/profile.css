@@ -1,0 +1,254 @@
+:root {
+    --bg: #f3e8ff;
+    --card: #ffffff;
+    --text: #18181b;
+    --muted: #6b7280;
+    --accent: #a855f7;
+    --search-border: #a855f7;
+    --search-bg: #ffffff;
+}
+
+body.dark {
+    --bg: #0f172a;
+    --card: #020617;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #a855f7;
+    --search-border: #9333ea;
+    --search-bg: #1e1e2a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* -------- Контейнер профиля -------- */
+.profile-container {
+    width: 420px;
+    background: var(--card);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,.2);
+    position: relative;
+}
+
+/* -------- Шапка профиля -------- */
+.profile-header {
+    height: 180px;
+    background: linear-gradient(135deg, #a855f7, #9333ea);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: background 0.3s;
+}
+
+/* -------- Поиск пользователей -------- */
+.search {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 2px solid var(--search-border);
+    outline: none;
+    background: var(--search-bg);
+    transition: all 0.3s;
+    font-size: 15px;
+}
+
+.search:focus {
+    box-shadow: 0 0 10px rgba(168,85,247,0.3);
+}
+
+/* -------- Шторка результатов поиска -------- */
+.search-results {
+    position: absolute;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    background: var(--search-bg);
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 10;
+    display: none;
+}
+
+.search-results.show {
+    display: block;
+    animation: slideDown 0.25s ease forwards;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-bottom: 1px solid #eee;
+}
+
+body.dark .user-item {
+    border-bottom: 1px solid #444;
+}
+
+.user-item:hover {
+    background: rgba(168,85,247,.1);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.user-info b {
+    display: block;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.user-info span {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* -------- Аватар профиля -------- */
+.avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #fff;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+}
+
+/* -------- Контент профиля -------- */
+.profile-content {
+    padding: 60px 24px 24px;
+    text-align: center;
+    color: var(--text);
+}
+
+h1 {
+    margin: 0;
+}
+
+.email {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+[contenteditable]:empty::before {
+    content: attr(data-placeholder);
+    color: var(--muted);
+}
+
+#description {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* -------- Кнопки -------- */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #9333ea;
+}
+
+.logout {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+/* -------- Страница чужого профиля -------- */
+#backBtn {
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#backBtn:hover {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+#contactBtn {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#contactBtn:hover {
+    background-color: #1e7e34;
+}
